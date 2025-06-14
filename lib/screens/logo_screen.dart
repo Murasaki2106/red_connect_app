@@ -1,6 +1,6 @@
 import 'package:blood_donation_app/screens/DescriptiveScreen1.dart';
 import 'package:flutter/material.dart';
-import 'DescriptiveScreen1.dart'; // Import the screen you want to navigate to
+// Import the screen you want to navigate to
 
 class LogoScreen extends StatelessWidget {
   const LogoScreen({super.key});

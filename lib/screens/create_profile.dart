@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart'; // Just in case you use any info from it later
+// Just in case you use any info from it later
 import 'navigation.dart'; // 👈
 
 class CreateProfile extends StatelessWidget {
