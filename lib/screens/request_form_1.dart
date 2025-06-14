@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'request_form_2.dart';
+import 'home_screen.dart';
 
 class RequestForm1 extends StatefulWidget {
   const RequestForm1({super.key});
@@ -112,15 +113,17 @@ class _RequestForm1State extends State<RequestForm1> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                 ),
                 onPressed: () {
+                  final form1Data = {
+                    Text('bloodGroup', style: GoogleFonts.roboto()): Text(selectedBloodGroup ?? '', style: GoogleFonts.roboto()),
+                    Text('urgency', style: GoogleFonts.roboto()): Text(urgencyLevel ?? '', style: GoogleFonts.roboto()),
+                    Text('units', style: GoogleFonts.roboto()): Text(unitCount.toString(), style: GoogleFonts.roboto()),
+                    Text('location', style: GoogleFonts.roboto()): Text(location, style: GoogleFonts.roboto()),
+                  };
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => RequestForm2(
-                        bloodGroup: selectedBloodGroup ?? '',
-                        urgency: urgencyLevel ?? '',
-                        units: unitCount,
-                        location: location,
-                      ),
+                      builder: (_) => RequestForm2(form1Data: form1Data),
                     ),
                   );
                 },
