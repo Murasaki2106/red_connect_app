@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'home_screen.dart';
 import 'request_screen.dart';
 import 'donate_screen.dart';
 import 'my_status_screen.dart';
 import 'more_screen.dart';
-import '../widgets/bottom_navbar.dart';
+import 'notifications_screen.dart';
 
 class MainNavigation extends StatefulWidget {
-  const MainNavigation({super.key});
+  final Map<String, String>? form1Data;
+  final Map<String, String>? form2Data;
+  final String? timeAgo;
+
+  const MainNavigation({
+    super.key,
+    this.form1Data,
+    this.form2Data,
+    this.timeAgo,
+  });
 
   @override
   _MainNavigationState createState() => _MainNavigationState();
@@ -16,18 +26,34 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [
-    HomeScreen(),
-    RequestScreen(),
-    DonateScreen(),
-    //StatusScreen(),
-    //ProfileScreen(),
-  ];
+  Map<Text, Text> convertToTextMap(Map<String, String> stringMap) {
+    return stringMap.map(
+      (key, value) => MapEntry(
+        Text(key, style: GoogleFonts.roboto()),
+        Text(value, style: GoogleFonts.roboto()),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> screens = [
+      HomeScreen(),
+      if (widget.form1Data != null && widget.form2Data != null && widget.timeAgo != null)
+        NotificationsPage(
+          form1Data: convertToTextMap(widget.form1Data!),
+          form2Data: convertToTextMap(widget.form2Data!),
+          timeAgo: widget.timeAgo!,
+        )
+      else
+        RequestScreen(),
+      DonateScreen(),
+      //StatusScreen(),
+      //ProfileScreen(),
+    ];
+
     return Scaffold(
-      body: _screens[_currentIndex],
+      body: screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         selectedItemColor: Colors.red,
