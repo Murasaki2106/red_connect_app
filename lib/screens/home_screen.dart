@@ -1,3 +1,4 @@
+import 'package:blood_donation_app/screens/notifications_screen.dart';
 import 'package:flutter/material.dart';
 import 'request_screen.dart';
 import 'request_detail_screen.dart';
@@ -5,29 +6,31 @@ import 'request_form_1.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  final Map<Text, Text>? form1Data;
+  final Map<Text, Text>? form2Data;
+
+  HomeScreen({super.key, this.form1Data, this.form2Data});
 
   final List<Map<Text, Text>> requests = [
-  { 
-    Text("name", style: GoogleFonts.roboto()): Text('Aditi Patel', style: GoogleFonts.roboto()),
-    Text('bloodGroup', style: GoogleFonts.roboto()): Text('B+', style: GoogleFonts.roboto()),
-    Text('units', style: GoogleFonts.roboto()): Text('2', style: GoogleFonts.roboto()),
-    Text('urgency', style: GoogleFonts.roboto()): Text('Critical within 4 hrs', style: GoogleFonts.roboto()),
-  },
-  {
-    Text('name', style: GoogleFonts.roboto()): Text('Sameer Khan', style: GoogleFonts.roboto()),
-    Text('bloodGroup', style: GoogleFonts.roboto()): Text('O-', style: GoogleFonts.roboto()),
-    Text('units', style: GoogleFonts.roboto()): Text('1', style: GoogleFonts.roboto()),
-    Text('urgency', style: GoogleFonts.roboto()): Text('Urgent tomorrow', style: GoogleFonts.roboto()),
-  },
-  {
-    Text('name', style: GoogleFonts.roboto()): Text('Nikhil Joshi', style: GoogleFonts.roboto()),
-    Text('bloodGroup', style: GoogleFonts.roboto()): Text('AB+', style: GoogleFonts.roboto()),
-    Text('units', style: GoogleFonts.roboto()): Text('3', style: GoogleFonts.roboto()),
-    Text('urgency', style: GoogleFonts.roboto()): Text('Scheduled - needed in 2 days', style: GoogleFonts.roboto()),
-  },
-];
-
+    {
+      Text("name", style: GoogleFonts.roboto()): Text('Aditi Patel', style: GoogleFonts.roboto()),
+      Text('bloodGroup', style: GoogleFonts.roboto()): Text('B+', style: GoogleFonts.roboto()),
+      Text('units', style: GoogleFonts.roboto()): Text('2', style: GoogleFonts.roboto()),
+      Text('urgency', style: GoogleFonts.roboto()): Text('Critical within 4 hrs', style: GoogleFonts.roboto()),
+    },
+    {
+      Text('name', style: GoogleFonts.roboto()): Text('Sameer Khan', style: GoogleFonts.roboto()),
+      Text('bloodGroup', style: GoogleFonts.roboto()): Text('O-', style: GoogleFonts.roboto()),
+      Text('units', style: GoogleFonts.roboto()): Text('1', style: GoogleFonts.roboto()),
+      Text('urgency', style: GoogleFonts.roboto()): Text('Urgent tomorrow', style: GoogleFonts.roboto()),
+    },
+    {
+      Text('name', style: GoogleFonts.roboto()): Text('Nikhil Joshi', style: GoogleFonts.roboto()),
+      Text('bloodGroup', style: GoogleFonts.roboto()): Text('AB+', style: GoogleFonts.roboto()),
+      Text('units', style: GoogleFonts.roboto()): Text('3', style: GoogleFonts.roboto()),
+      Text('urgency', style: GoogleFonts.roboto()): Text('Scheduled - needed in 2 days', style: GoogleFonts.roboto()),
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                   width: 48,
                 ),
 
-                // Greeting Text (Expanded for center alignment)
+                // Greeting Text
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,7 +78,18 @@ class HomeScreen extends StatelessWidget {
                 // Notification Bell
                 GestureDetector(
                   onTap: () {
-                    // Handle bell tap
+                    if (form1Data != null && form2Data != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => NotificationsPage(
+                            form1Data: form1Data!,
+                            form2Data: form2Data!,
+                            timeAgo: '10', // You can calculate actual time diff if needed
+                          ),
+                        ),
+                      );
+                    }
                   },
                   child: Image.asset(
                     'assets/images/notification_bell.png',
@@ -87,10 +101,8 @@ class HomeScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 16),
-            const SizedBox(height: 16),
 
             // Action buttons
-            // Action buttons (larger square style)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -178,10 +190,11 @@ class HomeScreen extends StatelessWidget {
                       MaterialPageRoute(builder: (_) => RequestScreen()),
                     );
                   },
-                  child: Text("See all requests >",style: GoogleFonts.roboto()),
+                  child: Text("See all requests >", style: GoogleFonts.roboto()),
                 ),
               ],
             ),
+
             const SizedBox(height: 8),
 
             // Horizontal scroll requests
@@ -212,11 +225,10 @@ class HomeScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Name: ${req[Text('name')]}",style: GoogleFonts.roboto()),
-                          Text("Blood Group: ${req[Text('bloodGroup')]}",style: GoogleFonts.roboto()),
-                          if (req[Text('units')] != null)
-                            Text("Units: ${req[Text('units')]}",style: GoogleFonts.roboto()),
-                          Text("Urgency: ${req[Text('urgency')]}",style: GoogleFonts.roboto()),
+                          Text("Name: ${req[Text('name')]?.data ?? ''}", style: GoogleFonts.roboto()),
+                          Text("Blood Group: ${req[Text('bloodGroup')]?.data ?? ''}", style: GoogleFonts.roboto()),
+                          Text("Units: ${req[Text('units')]?.data ?? ''}", style: GoogleFonts.roboto()),
+                          Text("Urgency: ${req[Text('urgency')]?.data ?? ''}", style: GoogleFonts.roboto()),
                         ],
                       ),
                     ),
@@ -227,18 +239,18 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // Donation Camp Image
+            // Address image
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.asset(
-                'assets/images/address_image.png', // Replace with your actual asset
+                'assets/images/address_image.png',
                 fit: BoxFit.cover,
               ),
             ),
 
             const SizedBox(height: 24),
 
-            // From Donor Wall
+            // Donor wall
             Text(
               "From Our Donor Wall",
               style: GoogleFonts.roboto(
@@ -251,15 +263,13 @@ class HomeScreen extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.asset(
-                'assets/images/girl_image.png', // Replace with your actual asset
+                'assets/images/girl_image.png',
                 fit: BoxFit.cover,
               ),
             ),
           ],
         ),
       ),
-
-      // Bottom nav (dummy)
     );
   }
 }
