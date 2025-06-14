@@ -7,6 +7,8 @@ import 'more_screen.dart';
 import '../widgets/bottom_navbar.dart';
 
 class MainNavigation extends StatefulWidget {
+  const MainNavigation({super.key});
+
   @override
   _MainNavigationState createState() => _MainNavigationState();
 }

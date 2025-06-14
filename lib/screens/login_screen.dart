@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'navigation.dart';
 import 'login_signup.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,7 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(), // dismiss keyboard on tap
+        onTap: () =>
+            FocusScope.of(context).unfocus(), // dismiss keyboard on tap
         child: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -34,17 +36,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 30),
 
-                
-                
-
                 // Username
                 TextField(
                   controller: username,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: "Username",
+                    labelStyle: GoogleFonts.roboto(),
                     border: OutlineInputBorder(),
                     filled: true,
-                    fillColor: Color.fromRGBO(120, 147, 194, 0.55), 
+                    fillColor: Color.fromRGBO(120, 147, 194, 0.55),
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -55,12 +55,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     labelText: "Password",
+                    labelStyle: GoogleFonts.roboto(),
                     border: const OutlineInputBorder(),
                     filled: true,
                     fillColor: const Color.fromRGBO(120, 147, 194, 0.55),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                       ),
                       onPressed: () {
                         setState(() {
@@ -74,11 +77,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // Login Button
                 SizedBox(
-                  width: double.infinity,
+                  width: 180,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                       backgroundColor: const Color.fromRGBO(230, 57, 70, 1),
+                      shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            )
+                      
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(
@@ -86,9 +93,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         MaterialPageRoute(builder: (_) => MainNavigation()),
                       );
                     },
-                    child: const Text(
+                    child: Text(
                       "Login",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.roboto(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        
+                      ),
                     ),
                   ),
                 ),
@@ -99,14 +110,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const LoginSignupScreen()),
+                      MaterialPageRoute(
+                        builder: (_) => const LoginSignupScreen(),
+                      ),
                     );
                   },
 
-                  child: const Text(
+                  child: Text(
                     "Don't have an account? Sign up.",
-                    style: TextStyle(
-                      color: Color.fromRGBO(230, 57, 70, 1),  
+                    style: GoogleFonts.roboto(
+                      color: Color.fromRGBO(230, 57, 70, 1),
                       decoration: TextDecoration.underline,
                     ),
                   ),

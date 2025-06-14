@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RequestDetailScreen extends StatelessWidget {
-  final Map<String, String> request;
+  final Map<Text, Text> request;
 
   const RequestDetailScreen({super.key, required this.request});
 
@@ -12,7 +13,7 @@ class RequestDetailScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: BackButton(color: Colors.black),
+        leading: const BackButton(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
@@ -38,11 +39,16 @@ class RequestDetailScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Name: ${request['name']}"),
-                        Text("Blood Group: ${request['bloodGroup']}"),
-                        Text("Units Needed: ${request['units']}"),
-                        Text("Urgency: ${request['urgency']}"),
-                        const Text("Location: Civil Hospital, Ahmedabad"),
+                        Text("Name: \${request[Text('name')]!.data!}", style: GoogleFonts.roboto()),
+                        Text("Blood Group: \${request[Text('bloodGroup')]!.data!}", style: GoogleFonts.roboto()),
+                        Text("Units Needed: \${request[Text('units')]!.data!}", style: GoogleFonts.roboto()),
+                        Text("Urgency: \${request[Text('urgency')]!.data!}", style: GoogleFonts.roboto()),
+                        Text("Location: Civil Hospital, Ahmedabad", style: GoogleFonts.roboto()),
+                        Text(
+                          "Note:\nPatient is undergoing surgery.\nHospital verified request.",
+                          textAlign: TextAlign.left,
+                          style: GoogleFonts.roboto(fontSize: 14),
+                        ),
                       ],
                     ),
                   ),
@@ -51,13 +57,6 @@ class RequestDetailScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 16),
-
-            // Note
-            const Text(
-              "Note:\nPatient is undergoing surgery.\nHospital verified request.",
-              textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 14),
-            ),
 
             const SizedBox(height: 20),
 
@@ -68,7 +67,7 @@ class RequestDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Image.asset(
-                'assets/images/sample_request_doc.png', // Replace with your sample hospital doc image
+                'assets/images/sample_request_doc.png',
                 height: 250,
                 width: double.infinity,
                 fit: BoxFit.contain,
@@ -88,9 +87,9 @@ class RequestDetailScreen extends StatelessWidget {
                   backgroundColor: const Color.fromRGBO(144, 224, 239, 1),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
-                child: const Text(
+                child: Text(
                   'Connect',
-                  style: TextStyle(color: Colors.black),
+                  style: GoogleFonts.roboto(color: Colors.black),
                 ),
               ),
             ),

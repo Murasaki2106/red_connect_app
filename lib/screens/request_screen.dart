@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
 import 'request_detail_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RequestScreen extends StatelessWidget {
-  final List<Map<String, String>> requests = [
-    {
-      'name': 'Aditi Patel',
-      'bloodGroup': 'B+',
-      'units': '2',
-      'urgency': 'Critical within 4 hrs',
-    },
-    {
-      'name': 'Sameer Khan',
-      'bloodGroup': 'O-',
-      'units': '1',
-      'urgency': 'Urgent by tomorrow',
-    },
-    {
-      'name': 'Nikhil Joshi',
-      'bloodGroup': 'AB+',
-      'units': '3',
-      'urgency': 'Scheduled – needed in 2 days',
-    },
-    {
-      'name': 'Anamika Verma',
-      'bloodGroup': 'B+',
-      'units': '2',
-      'urgency': 'Emergency',
-    },
-  ];
+  final List<Map<Text, Text>> requests = [
+  {
+    Text('name', style: GoogleFonts.roboto()): Text('Aditi Patel', style: GoogleFonts.roboto()),
+    Text('bloodGroup', style: GoogleFonts.roboto()): Text('B+', style: GoogleFonts.roboto()),
+    Text('units', style: GoogleFonts.roboto()): Text('2', style: GoogleFonts.roboto()),
+    Text('urgency', style: GoogleFonts.roboto()): Text('Critical within 4 hrs', style: GoogleFonts.roboto()),
+  },
+  {
+    Text('name', style: GoogleFonts.roboto()): Text('Sameer Khan', style: GoogleFonts.roboto()),
+    Text('bloodGroup', style: GoogleFonts.roboto()): Text('O-', style: GoogleFonts.roboto()),
+    Text('units', style: GoogleFonts.roboto()): Text('1', style: GoogleFonts.roboto()),
+    Text('urgency', style: GoogleFonts.roboto()): Text('Urgent by tomorrow', style: GoogleFonts.roboto()),
+  },
+  {
+    Text('name', style: GoogleFonts.roboto()): Text('Nikhil Joshi', style: GoogleFonts.roboto()),
+    Text('bloodGroup', style: GoogleFonts.roboto()): Text('AB+', style: GoogleFonts.roboto()),
+    Text('units', style: GoogleFonts.roboto()): Text('3', style: GoogleFonts.roboto()),
+    Text('urgency', style: GoogleFonts.roboto()): Text('Scheduled – needed in 2 days', style: GoogleFonts.roboto()),
+  },
+  {
+    Text('name', style: GoogleFonts.roboto()): Text('Anamika Verma', style: GoogleFonts.roboto()),
+    Text('bloodGroup', style: GoogleFonts.roboto()): Text('B+', style: GoogleFonts.roboto()),
+    Text('units', style: GoogleFonts.roboto()): Text('2', style: GoogleFonts.roboto()),
+    Text('urgency', style: GoogleFonts.roboto()): Text('Emergency', style: GoogleFonts.roboto()),
+  },
+];
+
 
   RequestScreen({super.key}); // removed 'const' here
 
