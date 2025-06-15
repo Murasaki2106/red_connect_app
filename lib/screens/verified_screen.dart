@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:blood_donation_app/screens/navigation.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'notifications_screen.dart';
@@ -26,7 +27,7 @@ class _VerifiedScreenState extends State<VerifiedScreen> {
       } else {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) =>  HomeScreen()),
+          MaterialPageRoute(builder: (_) =>  MainNavigation()),
         );
       }
     });
