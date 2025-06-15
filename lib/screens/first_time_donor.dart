@@ -1,3 +1,4 @@
+import 'package:blood_donation_app/screens/blood_donation_form2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -176,8 +177,16 @@ class _FirstTimeDonorScreenState extends State<FirstTimeDonorScreen> {
                 (_donorStatus == 'yes' || _lastDonationDate != null))
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Continue to next step
+                  onPressed: () 
+                  {
+                    Navigator.push
+                    (
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const BloodDonorDetailsForm2(),
+                      ),
+                    );
+                    
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(152, 223, 214, 1),
