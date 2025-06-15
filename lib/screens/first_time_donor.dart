@@ -47,7 +47,7 @@ class _FirstTimeDonorScreenState extends State<FirstTimeDonorScreen> {
               )),
           const SizedBox(height: 12),
           _buildTip("Before Donation", [
-            "Eat a healthy meal 2–3 hours before",
+            "Eat a healthy meal 2-3 hours before",
             "Drink plenty of water; stay hydrated",
             "Get enough sleep the night before",
             "Avoid alcohol 24h before donating",
@@ -61,7 +61,7 @@ class _FirstTimeDonorScreenState extends State<FirstTimeDonorScreen> {
           ]),
           const SizedBox(height: 10),
           _buildTip("After Donation", [
-            "Rest at donation site for 10–15 min",
+            "Rest at donation site for 10-15 min",
             "Drink juice, eat a snack",
             "Avoid heavy exercise for the day",
           ]),
