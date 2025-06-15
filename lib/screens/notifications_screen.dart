@@ -7,6 +7,7 @@ class NotificationsPage extends StatelessWidget {
   final Map<Text, Text> form2Data;
   final String timeAgo;
 
+  
   const NotificationsPage({
     super.key,
     required this.form1Data,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'request_screen.dart';
 import 'request_detail_screen.dart';
 import 'request_form_1.dart';
+import 'blood_donation_form1.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,24 +12,60 @@ class HomeScreen extends StatelessWidget {
 
   HomeScreen({super.key, this.form1Data, this.form2Data});
 
-  final List<Map<Text, Text>> requests = [
+  List<Map<Text, Text>> requests = [
     {
-      Text("name", style: GoogleFonts.roboto()): Text('Aditi Patel', style: GoogleFonts.roboto()),
-      Text('bloodGroup', style: GoogleFonts.roboto()): Text('B+', style: GoogleFonts.roboto()),
-      Text('units', style: GoogleFonts.roboto()): Text('2', style: GoogleFonts.roboto()),
-      Text('urgency', style: GoogleFonts.roboto()): Text('Critical within 4 hrs', style: GoogleFonts.roboto()),
+      Text("name", style: GoogleFonts.roboto()): Text(
+        'Aditi Patel',
+        style: GoogleFonts.roboto(),
+      ),
+      Text('bloodGroup', style: GoogleFonts.roboto()): Text(
+        'B+',
+        style: GoogleFonts.roboto(),
+      ),
+      Text('units', style: GoogleFonts.roboto()): Text(
+        '2',
+        style: GoogleFonts.roboto(),
+      ),
+      Text('urgency', style: GoogleFonts.roboto()): Text(
+        'Critical within 4 hrs',
+        style: GoogleFonts.roboto(),
+      ),
     },
     {
-      Text('name', style: GoogleFonts.roboto()): Text('Sameer Khan', style: GoogleFonts.roboto()),
-      Text('bloodGroup', style: GoogleFonts.roboto()): Text('O-', style: GoogleFonts.roboto()),
-      Text('units', style: GoogleFonts.roboto()): Text('1', style: GoogleFonts.roboto()),
-      Text('urgency', style: GoogleFonts.roboto()): Text('Urgent tomorrow', style: GoogleFonts.roboto()),
+      Text('name', style: GoogleFonts.roboto()): Text(
+        'Sameer Khan',
+        style: GoogleFonts.roboto(),
+      ),
+      Text('bloodGroup', style: GoogleFonts.roboto()): Text(
+        'O-',
+        style: GoogleFonts.roboto(),
+      ),
+      Text('units', style: GoogleFonts.roboto()): Text(
+        '1',
+        style: GoogleFonts.roboto(),
+      ),
+      Text('urgency', style: GoogleFonts.roboto()): Text(
+        'Urgent tomorrow',
+        style: GoogleFonts.roboto(),
+      ),
     },
     {
-      Text('name', style: GoogleFonts.roboto()): Text('Nikhil Joshi', style: GoogleFonts.roboto()),
-      Text('bloodGroup', style: GoogleFonts.roboto()): Text('AB+', style: GoogleFonts.roboto()),
-      Text('units', style: GoogleFonts.roboto()): Text('3', style: GoogleFonts.roboto()),
-      Text('urgency', style: GoogleFonts.roboto()): Text('Scheduled - needed in 2 days', style: GoogleFonts.roboto()),
+      Text('name', style: GoogleFonts.roboto()): Text(
+        'Nikhil Joshi',
+        style: GoogleFonts.roboto(),
+      ),
+      Text('bloodGroup', style: GoogleFonts.roboto()): Text(
+        'AB+',
+        style: GoogleFonts.roboto(),
+      ),
+      Text('units', style: GoogleFonts.roboto()): Text(
+        '3',
+        style: GoogleFonts.roboto(),
+      ),
+      Text('urgency', style: GoogleFonts.roboto()): Text(
+        'Scheduled - needed in 2 days',
+        style: GoogleFonts.roboto(),
+      ),
     },
   ];
 
@@ -85,7 +122,8 @@ class HomeScreen extends StatelessWidget {
                           builder: (_) => NotificationsPage(
                             form1Data: form1Data!,
                             form2Data: form2Data!,
-                            timeAgo: '10', // You can calculate actual time diff if needed
+                            timeAgo:
+                                '10', // You can calculate actual time diff if needed
                           ),
                         ),
                       );
@@ -122,7 +160,7 @@ class HomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: Colors.black.withValues(alpha: 0.1),
                             blurRadius: 4,
                             offset: Offset(0, 2),
                           ),
@@ -133,7 +171,10 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.search, size: 36),
                           SizedBox(height: 8),
-                          Text("Request Blood", style: GoogleFonts.roboto(fontSize: 16)),
+                          Text(
+                            "Request Blood",
+                            style: GoogleFonts.roboto(fontSize: 16),
+                          ),
                         ],
                       ),
                     ),
@@ -143,7 +184,13 @@ class HomeScreen extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      // Navigate to donate
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const BloodDonationForm1Screen(),
+                        ),
+                      );
                     },
                     child: Container(
                       height: 120,
@@ -153,7 +200,7 @@ class HomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: Colors.black.withValues(alpha: 0.1),
                             blurRadius: 4,
                             offset: Offset(0, 2),
                           ),
@@ -190,7 +237,10 @@ class HomeScreen extends StatelessWidget {
                       MaterialPageRoute(builder: (_) => RequestScreen()),
                     );
                   },
-                  child: Text("See all requests >", style: GoogleFonts.roboto()),
+                  child: Text(
+                    "See all requests >",
+                    style: GoogleFonts.roboto(),
+                  ),
                 ),
               ],
             ),
@@ -225,10 +275,22 @@ class HomeScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Name: ${req[Text('name')]?.data ?? ''}", style: GoogleFonts.roboto()),
-                          Text("Blood Group: ${req[Text('bloodGroup')]?.data ?? ''}", style: GoogleFonts.roboto()),
-                          Text("Units: ${req[Text('units')]?.data ?? ''}", style: GoogleFonts.roboto()),
-                          Text("Urgency: ${req[Text('urgency')]?.data ?? ''}", style: GoogleFonts.roboto()),
+                          Text(
+                            "Name: ${req[Text('name')]?.data ?? ''}",
+                            style: GoogleFonts.roboto(),
+                          ),
+                          Text(
+                            "Blood Group: ${req[Text('bloodGroup')]?.data ?? ''}",
+                            style: GoogleFonts.roboto(),
+                          ),
+                          Text(
+                            "Units: ${req[Text('units')]?.data ?? ''}",
+                            style: GoogleFonts.roboto(),
+                          ),
+                          Text(
+                            "Urgency: ${req[Text('urgency')]?.data ?? ''}",
+                            style: GoogleFonts.roboto(),
+                          ),
                         ],
                       ),
                     ),
